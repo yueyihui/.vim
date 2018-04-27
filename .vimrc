@@ -4,12 +4,6 @@ set shiftwidth=4
 set autoindent
 set cindent
 
-"if &term=="xterm"
-"	set t_Co=8
-"	set t_Sb=^[[4%dm
-"	set t_Sf=^[[3%dm
-"endif
-
 set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar right
@@ -30,11 +24,13 @@ let Tlist_Show_One_File=1
 nmap <silent><F2> :TlistToggle <CR>
 nmap <silent><F3> :NERDTreeFind <CR>
 nmap <silent><F4> :NERDTreeClose <CR> 
+nmap <silent><F5> :MundoToggle <CR>
 nmap <Leader>es diwmb      " exchange words begin
 nmap <Leader>ee viwp`bP    " exchange words end
 let g:NERDTreeWinSize=35
 let g:Tlist_WinWidth=50
-
+" let g:mundo_width = 45
+" let g:mundo_right = 1
 
 """""""""""""""""""""""easy motion""""""""""""""""""""""""""""""
 "overwin: over window"
@@ -117,3 +113,5 @@ Plugin 'garbas/vim-snipmate'
 
 " Optional:
 Plugin 'honza/vim-snippets'
+
+Plugin 'simnalamburt/vim-mundo'
