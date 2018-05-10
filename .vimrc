@@ -25,15 +25,21 @@ nmap <silent><F2> :TlistToggle <CR>
 nmap <silent><F3> :NERDTreeFind <CR>
 nmap <silent><F4> :NERDTreeClose <CR> 
 nmap <silent><F5> :MundoToggle <CR>
-nmap <Leader>es diwmb      " exchange words begin
-nmap <Leader>ee viwp`bP    " exchange words end
+
+" exchange words begin
+nmap <Leader>es diwmb
+
+" exchange words end
+nmap <Leader>ee viwp`bP
+
+nmap <Leader>st :TlistShowTag <CR>
 
 " "hy is yank words to h
 " <C-r>h is past h
 " c is confirm,
 " <left> move cursor to one left.
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>| noh
 
 let g:NERDTreeWinSize=35
 let g:Tlist_WinWidth=50
