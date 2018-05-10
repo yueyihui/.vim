@@ -15,8 +15,8 @@ set number
 set background=dark
 colorscheme gruvbox
 
-hi Search cterm=NONE ctermfg=black ctermbg=grey
-highlight LineNr ctermfg=grey
+" hi Search cterm=NONE ctermfg=black ctermbg=grey
+" highlight LineNr ctermfg=grey
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
@@ -27,6 +27,14 @@ nmap <silent><F4> :NERDTreeClose <CR>
 nmap <silent><F5> :MundoToggle <CR>
 nmap <Leader>es diwmb      " exchange words begin
 nmap <Leader>ee viwp`bP    " exchange words end
+
+" "hy is yank words to h
+" <C-r>h is past h
+" c is confirm,
+" <left> move cursor to one left.
+" vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
 let g:NERDTreeWinSize=35
 let g:Tlist_WinWidth=50
 " let g:mundo_width = 45
@@ -51,7 +59,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f2)
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2) Need one more keystroke, 
 " but on average, it may be more comfortable.
-" nmap s <Plug>(easymotion-overwin-f)
+nmap f <Plug>(easymotion-overwin-f)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
