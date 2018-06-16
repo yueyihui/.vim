@@ -13,6 +13,7 @@ set guioptions-=b  "scrollbar bottom
 set number
 set background=dark
 colorscheme gruvbox
+cs add cscope.out
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
@@ -22,8 +23,7 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_One_File=1
 nmap <silent><F2> :TlistToggle <CR>
 nmap <silent><F3> :NERDTreeFind <CR>
-nmap <silent><F4> :NERDTreeClose <CR> 
-nmap <silent><F5> :MundoToggle <CR>
+nmap <silent><F4> :MundoToggle <CR>
 
 " exchange words begin
 nmap <Leader>es diwmb
