@@ -64,7 +64,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2) Need one more keystroke, 
 " but on average, it may be more comfortable.
-nmap f <Plug>(easymotion-overwin-f2)
+nmap / <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
@@ -75,8 +75,8 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  f <Plug>(easymotion-sn)
+omap f <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to
 " EasyMotion.
@@ -137,5 +137,5 @@ Plugin 'garbas/vim-snipmate'
 
 " Optional:
 Plugin 'honza/vim-snippets'
-
 Plugin 'simnalamburt/vim-mundo'
+Plugin 'kshenoy/vim-signature'
