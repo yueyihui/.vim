@@ -13,7 +13,10 @@ set guioptions-=b  "scrollbar bottom
 set number
 set background=dark
 colorscheme gruvbox
-cs add cscope.out
+
+if filereadable("cscope.out")
+	cs add cscope.out
+endif
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
@@ -64,7 +67,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2) Need one more keystroke, 
 " but on average, it may be more comfortable.
-nmap / <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
@@ -75,16 +78,22 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Gif config
-map  f <Plug>(easymotion-sn)
-omap f <Plug>(easymotion-tn)
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to
 " EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
 """"""""""""""""""""""""end""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""Mark""""""""""""""""""""""""""""""""""""
+nmap <unique> <Leader>] <Plug>MarkSet
+xmap <unique> <Leader>] <Plug>MarkSet
+nmap <unique> <Leader>[ <Plug>MarkClear
+"""""""""""""""""""""""end"""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -106,7 +115,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'wincent/command-t'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -138,4 +147,6 @@ Plugin 'garbas/vim-snipmate'
 " Optional:
 Plugin 'honza/vim-snippets'
 Plugin 'simnalamburt/vim-mundo'
+Plugin 'inkarkat/vim-ingo-library'
+Plugin 'inkarkat/vim-mark'
 Plugin 'kshenoy/vim-signature'
