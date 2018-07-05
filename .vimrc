@@ -18,6 +18,16 @@ if filereadable("cscope.out")
 	cs add cscope.out
 endif
 
+function Cpp_tags() "{{{
+	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=cscope.out
+	set tags+=./tags,./TAGS,tags,TAGS
+endfunction "}}}
+
+function C_tags() "{{{
+	!ctags -R --C-kinds=+p --fields=+aS --extra=+q --exclude=cscope.out
+	set tags+=./tags,./TAGS,tags,TAGS
+endfunction "}}}
+
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 let Tlist_Use_Right_Window=1
@@ -95,6 +105,16 @@ xmap <unique> <Leader>] <Plug>MarkSet
 nmap <unique> <Leader>[ <Plug>MarkClear
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
+set completeopt=menu,menuone
+let OmniCpp_MayCompleteDot=1    "打开  . 操作符
+let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
+let OmniCpp_MayCompleteScope=1  "打开 :: 操作符
+let OmniCpp_NamespaceSearch=1   "打开命名空间
+let OmniCpp_GlobalScopeSearch=1
+let OmniCpp_DefaultNamespace=["std"]
+let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
+let OmniCpp_SelectFirstItem = 2 "自动弹出时自动跳至第一个
+
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -145,6 +165,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 " Optional:
+Plugin 'dradtke/OmniCppComplete'
 Plugin 'othree/vim-autocomplpop'
 Plugin 'vim-scripts/L9'
 Plugin 'honza/vim-snippets'
