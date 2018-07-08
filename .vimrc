@@ -105,6 +105,7 @@ xmap <unique> <Leader>] <Plug>MarkSet
 nmap <unique> <Leader>[ <Plug>MarkClear
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""Omni""""""""""""""""""""""""""""""""
 set completeopt=menu,menuone
 let OmniCpp_MayCompleteDot=1    "打开  . 操作符
 let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
@@ -114,6 +115,12 @@ let OmniCpp_GlobalScopeSearch=1
 let OmniCpp_DefaultNamespace=["std"]
 let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
 let OmniCpp_SelectFirstItem = 2 "自动弹出时自动跳至第一个
+"""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
+let CCTreeEnhancedSymbolProcessing = 1	"CCTreeOptsEnable EnhancedSymbolProcessing
+
+"""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -173,3 +180,4 @@ Plugin 'simnalamburt/vim-mundo'
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
 Plugin 'kshenoy/vim-signature'
+Plugin 'hari-rangarajan/CCTree'
