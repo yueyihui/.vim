@@ -14,18 +14,18 @@ set number
 set background=dark
 colorscheme gruvbox
 
-if filereadable("cscope.out")
+if filereadable('cscope.out')
 	cs add cscope.out
 endif
 
-if !exists("*Cpp_tags")
+if !exists('*Cpp_tags')
 	function Cpp_tags() "{{{
 		!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=cscope.out
 		set tags+=./tags,./TAGS,tags,TAGS
 	endfunction "}}}
 endif
 
-if !exists("*C_tags")
+if !exists('*C_tags')
 	function C_tags() "{{{
 		!ctags -R --C-kinds=+p --fields=+aS --extra=+q --exclude=cscope.out
 		set tags+=./tags,./TAGS,tags,TAGS
@@ -63,6 +63,7 @@ let g:NERDTreeWinSize=35
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
+let g:NERDTreeIgnore = ['\.git$', '\.out$', 'tags[[file]]', 'TAGS[[file]]', '\.o$', '\.so$']
 let g:Tlist_WinWidth=50
 " let g:mundo_width = 45
 " let g:mundo_right = 1
@@ -190,3 +191,4 @@ Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
 Plugin 'kshenoy/vim-signature'
 Plugin 'hari-rangarajan/CCTree'
+Plugin 'scrooloose/nerdtree'
