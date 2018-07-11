@@ -18,15 +18,19 @@ if filereadable("cscope.out")
 	cs add cscope.out
 endif
 
-function Cpp_tags() "{{{
-	!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=cscope.out
-	set tags+=./tags,./TAGS,tags,TAGS
-endfunction "}}}
+if !exists("*Cpp_tags")
+	function Cpp_tags() "{{{
+		!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=cscope.out
+		set tags+=./tags,./TAGS,tags,TAGS
+	endfunction "}}}
+endif
 
-function C_tags() "{{{
-	!ctags -R --C-kinds=+p --fields=+aS --extra=+q --exclude=cscope.out
-	set tags+=./tags,./TAGS,tags,TAGS
-endfunction "}}}
+if !exists("*C_tags")
+	function C_tags() "{{{
+		!ctags -R --C-kinds=+p --fields=+aS --extra=+q --exclude=cscope.out
+		set tags+=./tags,./TAGS,tags,TAGS
+	endfunction "}}}
+endif
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
@@ -35,7 +39,9 @@ let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_One_File=1
 nmap <silent><F2> :TlistToggle <CR>
-nmap <silent><F3> :NERDTreeFind <CR>
+nmap <silent><F3> :NERDTreeFind  <CR>
+autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
+autocmd BufLeave NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
 
 " exchange words begin
@@ -54,6 +60,9 @@ nmap <Leader>st :TlistShowTag <CR>
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>| noh
 
 let g:NERDTreeWinSize=35
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
 let g:Tlist_WinWidth=50
 " let g:mundo_width = 45
 " let g:mundo_right = 1
