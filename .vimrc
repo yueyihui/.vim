@@ -64,6 +64,7 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeIgnore = ['\.git$', '\.out$', 'tags[[file]]', 'TAGS[[file]]', '\.o$', '\.so$']
+let g:NERDTreeMapToggleFilters = ""
 let g:Tlist_WinWidth=50
 " let g:mundo_width = 45
 " let g:mundo_right = 1
