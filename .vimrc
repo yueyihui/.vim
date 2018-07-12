@@ -32,6 +32,15 @@ if !exists('*C_tags')
 	endfunction "}}}
 endif
 
+if !exists('*Func_call')
+	function! Func_call() "{{{
+		let maker = input('Enter maker: ')
+		SignatureListMarkers maker, 3
+	endfunction "}}}
+
+	nmap <silent><F1> :call Func_call() <CR>
+endif
+
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 let Tlist_Use_Right_Window=1
@@ -109,6 +118,15 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " map  n <Plug>(easymotion-next)
 " map  N <Plug>(easymotion-prev)
 """"""""""""""""""""""""end""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""signature""""""""""""""""""""""""""
+nnoremap <silent>[1 :call signature#marker#Goto('prev', 1, v:count) <CR>
+nnoremap <silent>]1 :call signature#marker#Goto('next', 1, v:count) <CR>
+nnoremap <silent>[2 :call signature#marker#Goto('prev', 2, v:count) <CR>
+nnoremap <silent>]2 :call signature#marker#Goto('next', 2, v:count) <CR>
+nnoremap <silent>[3 :call signature#marker#Goto('prev', 3, v:count) <CR>
+nnoremap <silent>]3 :call signature#marker#Goto('next', 3, v:count) <CR>
+""""""""""""""""""""""""""end""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""Mark""""""""""""""""""""""""""""""""
 nmap <unique> <Leader>] <Plug>MarkSet
