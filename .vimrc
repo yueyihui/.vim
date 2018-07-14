@@ -47,10 +47,13 @@ let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_One_File=1
-nmap <silent><F2> :TlistToggle <CR>
+nmap <silent><F2> :TagbarOpenAutoClose <CR>
+autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
+autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
+" nmap <silent><F2> :TlistToggle <CR>
 nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
-autocmd BufLeave NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
+autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
 
 " exchange words begin
@@ -59,7 +62,8 @@ nmap <Leader>es diwmb
 " exchange words end
 nmap <Leader>ee viwp`bP
 
-nmap <Leader>st :TlistShowTag <CR>
+" nmap <Leader>st :TlistShowTag <CR>
+nmap <silent><Leader>s :TagbarCurrentTag <CR>
 
 " "hy is yank words to h
 " <C-r>h is past h
@@ -75,6 +79,7 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeIgnore = ['\.git$', '\.out$', 'tags[[file]]', 'TAGS[[file]]', '\.o$', '\.so$']
 let g:NERDTreeMapToggleFilters = ""
 let g:Tlist_WinWidth=50
+let g:tagbar_width=60
 " let g:mundo_width = 45
 " let g:mundo_right = 1
 
@@ -148,7 +153,8 @@ let OmniCpp_SelectFirstItem = 2 "自动弹出时自动跳至第一个
 
 """""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
 let CCTreeEnhancedSymbolProcessing = 1	"CCTreeOptsEnable EnhancedSymbolProcessing
-
+highlight CCTreeHiSymbol  gui=bold guibg=darkblue guifg=peachpuff ctermfg=blue
+highlight CCTreeHiMarkers  gui=bold guifg=darkgreen guibg=lightyellow
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
@@ -211,3 +217,5 @@ Plugin 'inkarkat/vim-mark'
 Plugin 'kshenoy/vim-signature'
 Plugin 'hari-rangarajan/CCTree'
 Plugin 'scrooloose/nerdtree'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'majutsushi/tagbar'

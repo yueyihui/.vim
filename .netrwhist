@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/liang/android6.01Src_20170602/android/packages/apps/CubeC'
-let g:netrw_dirhist_2='/home/liang/android6.01Src_20170602/lichee/linux-3.10/arch/arm64/boot/dts'
-let g:netrw_dirhist_3='/home/liang/.vim'
-let g:netrw_dirhist_4='/home/liang/android6.01Src_20170602/android/bionic/libc/dns'
-let g:netrw_dirhist_5='/home/liang/android6.01Src_20170602/android/system/netd'
