@@ -10,6 +10,8 @@ set guioptions-=r  "scrollbar right
 set guioptions-=L  "scrollbar left
 set guioptions-=b  "scrollbar bottom
 
+set laststatus=2   "show statusline
+set statusline=%f  "F full path
 set number
 set background=dark
 colorscheme gruvbox
@@ -137,6 +139,8 @@ nnoremap <silent>]3 :call signature#marker#Goto('next', 3, v:count) <CR>
 nmap <unique> <Leader>] <Plug>MarkSet
 xmap <unique> <Leader>] <Plug>MarkSet
 nmap <unique> <Leader>[ <Plug>MarkClear
+nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
+nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""Omni""""""""""""""""""""""""""""""""
@@ -219,3 +223,4 @@ Plugin 'hari-rangarajan/CCTree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'majutsushi/tagbar'
+Plugin 'skywind3000/vim-preview'
