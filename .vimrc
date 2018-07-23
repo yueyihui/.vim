@@ -49,6 +49,9 @@ let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_One_File=1
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
 nmap <silent><F2> :TagbarOpenAutoClose <CR>
 autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
 autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
@@ -224,3 +227,5 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'majutsushi/tagbar'
 Plugin 'skywind3000/vim-preview'
+Plugin 'vim-airline/vim-airline'
+Plugin 'morhetz/gruvbox'
