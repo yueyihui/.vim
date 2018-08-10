@@ -61,6 +61,19 @@ nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
 autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
+nmap <Leader>n <Plug>MarkAllClear
+
+""""""""""""""""""""""""""""""
+execute "set <M-p>=\ep"
+nmap <silent><M-p> :PreviewTag <CR>
+
+execute "set <M-u>=\eu"
+execute "set <M-d>=\ed"
+noremap <M-u> :PreviewScroll -1<cr>
+noremap <M-d> :PreviewScroll +1<cr>
+inoremap <M-u> <c-\><c-o>:PreviewScroll -1<cr>
+inoremap <M-d> <c-\><c-o>:PreviewScroll +1<cr>
+"""""""""""""""""""""""""""""""
 
 " exchange words begin
 nmap <Leader>es diwmb
