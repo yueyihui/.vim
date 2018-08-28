@@ -50,7 +50,7 @@ let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_One_File=1
 let g:airline_powerline_fonts=1 "need https://github.com/powerline/fonts
-let b:airline_whitespace_disabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 nmap <silent><F2> :TagbarOpenAutoClose <CR>
