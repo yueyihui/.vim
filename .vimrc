@@ -73,6 +73,10 @@ noremap <M-u> :PreviewScroll -1<cr>
 noremap <M-d> :PreviewScroll +1<cr>
 inoremap <M-u> <c-\><c-o>:PreviewScroll -1<cr>
 inoremap <M-d> <c-\><c-o>:PreviewScroll +1<cr>
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 """""""""""""""""""""""""""""""
 
 " exchange words begin
@@ -153,9 +157,9 @@ nnoremap <silent>]3 :call signature#marker#Goto('next', 3, v:count) <CR>
 """"""""""""""""""""""""""end""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""Mark""""""""""""""""""""""""""""""""
-nmap <unique> <Leader>] <Plug>MarkSet
-xmap <unique> <Leader>] <Plug>MarkSet
-nmap <unique> <Leader>[ <Plug>MarkClear
+nmap <Leader>] <Plug>MarkSet
+xmap <Leader>] <Plug>MarkSet
+nmap <Leader>[ <Plug>MarkClear
 nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
 nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
