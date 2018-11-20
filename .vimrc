@@ -1,4 +1,5 @@
 set tabstop=4
+set expandtab
 set softtabstop=4
 set shiftwidth=4
 set autoindent
@@ -14,7 +15,10 @@ set laststatus=2   "show statusline
 set statusline=%f  "F full path
 set number
 set background=dark
+set nohlsearch
+set backspace=indent,eol,start
 colorscheme gruvbox
+syntax on
 
 if filereadable('cscope.out')
 	cs add cscope.out
@@ -53,6 +57,7 @@ let g:airline_powerline_fonts=1 "need https://github.com/powerline/fonts
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 nmap <silent><F2> :TagbarOpenAutoClose <CR>
 autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
 autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
@@ -66,11 +71,12 @@ nmap <Leader>n <Plug>MarkAllClear
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
 nmap <silent><M-p> :PreviewTag <CR>
+"nmap <silent><c-p> :PreviewTag<CR>
 
-execute "set <M-u>=\eu"
-execute "set <M-d>=\ed"
-noremap <M-u> :PreviewScroll -1<cr>
-noremap <M-d> :PreviewScroll +1<cr>
+"execute "set <M-u>=\eu"
+"execute "set <M-d>=\ed"
+"noremap <M-u> :PreviewScroll -1<cr>
+"noremap <M-d> :PreviewScroll +1<cr>
 inoremap <M-u> <c-\><c-o>:PreviewScroll -1<cr>
 inoremap <M-d> <c-\><c-o>:PreviewScroll +1<cr>
 nmap <silent> <A-Up> :wincmd k<CR>
