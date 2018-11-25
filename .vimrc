@@ -70,15 +70,14 @@ nmap <Leader>n <Plug>MarkAllClear
 
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
-nmap <silent><M-p> :PreviewTag <CR>
-"nmap <silent><c-p> :PreviewTag<CR>
+noremap <silent> <M-p> :PreviewTag <CR>
 
-"execute "set <M-u>=\eu"
-"execute "set <M-d>=\ed"
-"noremap <M-u> :PreviewScroll -1<cr>
-"noremap <M-d> :PreviewScroll +1<cr>
-inoremap <M-u> <c-\><c-o>:PreviewScroll -1<cr>
-inoremap <M-d> <c-\><c-o>:PreviewScroll +1<cr>
+execute "set <M-u>=\eu"
+noremap <M-u> :PreviewScroll -1 <CR>
+
+execute "set <M-d>=\ed"
+noremap <M-d> :PreviewScroll +1 <CR>
+
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
