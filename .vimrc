@@ -187,6 +187,10 @@ highlight CCTreeHiSymbol  gui=bold guibg=darkblue guifg=peachpuff ctermfg=blue
 highlight CCTreeHiMarkers  gui=bold guifg=darkgreen guibg=lightyellow
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""auto-pair""""""""""""""""""""""
+let g:AutoPairsShortcutToggle=''
+""""""""""""""""""""""END""""""""""""""""""""""""""
+
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -237,7 +241,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 " Optional:
-Plugin 'dradtke/OmniCppComplete'
+Plugin 'vim-scripts/OmniCppComplete'
 Plugin 'othree/vim-autocomplpop'
 Plugin 'vim-scripts/L9'
 Plugin 'honza/vim-snippets'
@@ -252,3 +256,4 @@ Plugin 'majutsushi/tagbar'
 Plugin 'skywind3000/vim-preview'
 Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
+Plugin 'vim-scripts/Auto-Pairs'
