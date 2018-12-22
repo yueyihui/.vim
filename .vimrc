@@ -4,6 +4,7 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
+set ttimeoutlen=0
 
 set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
@@ -191,7 +192,10 @@ highlight CCTreeHiMarkers  gui=bold guifg=darkgreen guibg=lightyellow
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""auto-pair""""""""""""""""""""""
-let g:AutoPairsShortcutToggle=''
+execute "set <M-q>=\eq"
+let g:AutoPairsShortcutFastWrap = '<M-q>'
+
+let g:AutoPairsShortcutToggle = ''
 """"""""""""""""""""""END""""""""""""""""""""""""""
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
