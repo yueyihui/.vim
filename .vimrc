@@ -25,6 +25,17 @@ if filereadable('cscope.out')
 	cs add cscope.out
 endif
 
+if !exists('*Cscope')
+    function Cscope()
+        !touch cscope.files
+        !find | grep "\.c$" >> cscope.files
+        !find | grep "\.cpp$" >> cscope.files
+        !find | grep "\.h$" >> cscope.files
+        !cscope -bq -i cscope.files
+        cs add cscope.out
+    endfunction
+endif
+
 if !exists('*Cpp_tags')
 	function Cpp_tags() "{{{
 		!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ --exclude=cscope.out
