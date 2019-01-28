@@ -78,17 +78,16 @@ nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
 autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
-nmap <Leader>n <Plug>MarkAllClear
 
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
 noremap <silent> <M-p> :PreviewTag <CR>
 
 execute "set <M-u>=\eu"
-noremap <M-u> :PreviewScroll -1 <CR>
+noremap <silent> <M-u> :PreviewScroll -1 <CR>
 
 execute "set <M-d>=\ed"
-noremap <M-d> :PreviewScroll +1 <CR>
+noremap <silent> <M-d> :PreviewScroll +1 <CR>
 
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
@@ -177,8 +176,16 @@ nnoremap <silent>]3 :call signature#marker#Goto('next', 3, v:count) <CR>
 nmap <Leader>] <Plug>MarkSet
 xmap <Leader>] <Plug>MarkSet
 nmap <Leader>[ <Plug>MarkClear
+nmap <Leader>n <Plug>MarkAllClear
 nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
 nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
+nmap <Leader>1  <Plug>MarkSearchGroup1Next
+nmap <Leader>2  <Plug>MarkSearchGroup2Next
+nmap <Leader>3  <Plug>MarkSearchGroup3Next
+nmap <Leader>4  <Plug>MarkSearchGroup4Next
+nmap <Leader>5  <Plug>MarkSearchGroup5Next
+nmap <Leader>6  <Plug>MarkSearchGroup6Next
+nmap <Leader>7  <Plug>MarkSearchGroup7Next
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""Omni""""""""""""""""""""""""""""""""
