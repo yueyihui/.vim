@@ -61,6 +61,7 @@ endif
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
+hi QuickFixLine ctermbg=None
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Exit_OnlyWindow=1
@@ -78,7 +79,7 @@ nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
 autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
-
+command GREP :execute 'vimgrep /'.expand('<cword>').'/j '.expand('%') | copen
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
 noremap <silent> <M-p> :PreviewTag <CR>
@@ -215,6 +216,10 @@ let g:AutoPairsShortcutFastWrap = '<M-q>'
 
 let g:AutoPairsShortcutToggle = ''
 """"""""""""""""""""""END""""""""""""""""""""""""""
+
+""""""""""""""""""quickr-preview"""""""""""""""""
+let g:quickr_preview_on_cursor = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
