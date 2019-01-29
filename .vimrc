@@ -80,6 +80,7 @@ autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
 autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
 command GREP :execute 'vimgrep /'.expand('<cword>').'/j '.expand('%') | copen
+nmap grep :GREP <CR>
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
 noremap <silent> <M-p> :PreviewTag <CR>
