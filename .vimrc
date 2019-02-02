@@ -27,25 +27,22 @@ endif
 
 if !exists('*Cscope')
     function Cscope()
-        !touch cscope.files
-        !find | grep "\.c$" >> cscope.files
-        !find | grep "\.cpp$" >> cscope.files
-        !find | grep "\.h$" >> cscope.files
-        !cscope -bq -i cscope.files
+        !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files
+        !cscope -bq -i cscope.files -f cscope.out
         cs add cscope.out
     endfunction
 endif
 
 if !exists('*Cpp_tags')
 	function Cpp_tags() "{{{
-		!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ --exclude=cscope.out
+		!ctags -R --append=yes --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ --exclude=cscope.out
 		set tags+=./tags,./TAGS,tags,TAGS
 	endfunction "}}}
 endif
 
 if !exists('*C_tags')
 	function C_tags() "{{{
-		!ctags -R --C-kinds=+p --fields=+aS --extra=+q --exclude=cscope.out
+		!ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
 		set tags+=./tags,./TAGS,tags,TAGS
 	endfunction "}}}
 endif
