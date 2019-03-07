@@ -18,6 +18,7 @@ set number
 set background=dark
 set nohlsearch
 set backspace=indent,eol,start
+set t_Co=256
 colorscheme gruvbox
 syntax on
 
@@ -88,10 +89,13 @@ noremap <silent> <M-u> :PreviewScroll -1 <CR>
 execute "set <M-d>=\ed"
 noremap <silent> <M-d> :PreviewScroll +1 <CR>
 
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+"nmap <silent> <A-Up> :wincmd k<CR>
+"nmap <silent> <A-Down> :wincmd j<CR>
+"nmap <silent> <A-Left> :wincmd h<CR>
+"nmap <silent> <A-Right> :wincmd l<CR>
+"nnoremap <C-Left> :tabprevious<CR>
+"nnoremap <C-Right> :tabnext<CR>
+nnoremap gp :tabprevious<CR>
 """""""""""""""""""""""""""""""
 
 " exchange words begin
