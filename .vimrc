@@ -27,11 +27,19 @@ if filereadable('cscope.out')
 endif
 
 if !exists('*Cscope')
-    function Cscope()
-        !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files
-        !cscope -bq -i cscope.files -f cscope.out
-        cs add cscope.out
+    function Cscope(path)
+        if !empty(a:path)
+            let curPath= a:path
+        else
+            let curPath = getcwd()
+        endif
+        let strList = split(curPath, "/")
+        let csName = strList[len(strList) - 1] . '_cscope.out'
+        let ret = system('find '.curPath.' -iname *.c -o -iname *.cpp -o -iname *.h -o -iname *.hpp > cscope.files')
+        let ret = system('cscope -bq -i cscope.files -f '.csName)
+        execute('cs add '.csName)
     endfunction
+    command! -nargs=? -complete=dir Cscope call Cscope(<q-args>)
 endif
 
 if !exists('*Cpp_tags')
