@@ -35,10 +35,31 @@ if !exists('*Cscope')
 endif
 
 if !exists('*Cpp_tags')
-	function Cpp_tags() "{{{
-		!ctags -R --append=yes --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ --exclude=cscope.out
+	function Cpp_tags(path) "{{{
+        if !empty(a:path)
+            let curPath= a:path
+        else
+            let curPath = getcwd()
+        endif
+        let ctags = 'ctags -R '
+        let ctags .= '--append=yes '
+        let ctags .= '--sort=yes '
+        let ctags .= '--c++-kinds=+p '
+        let ctags .= '--fields=+iaS '
+        let ctags .= '--extras=+q '
+        let ctags .= '--language-force=C++ '
+        let ctags .= '--exclude=cscope.out '
+        let ctags .= curPath
+        echom ctags
+        let ret = system(ctags)
+        if !empty(ret)
+            echom ret
+        else
+            echom 'ctags build successful on '.expand(curPath)
+        endif
 		set tags+=./tags,./TAGS,tags,TAGS
 	endfunction "}}}
+    command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
 endif
 
 if !exists('*C_tags')
@@ -95,7 +116,7 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nmap <silent> <A-Right> :wincmd l<CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
-nnoremap gp :tabprevious<CR>
+nnoremap <silent> gp :tabprevious<CR>
 """""""""""""""""""""""""""""""
 
 " exchange words begin
