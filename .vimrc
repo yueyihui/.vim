@@ -26,65 +26,50 @@ if filereadable('cscope.out')
 	cs add cscope.out
 endif
 
-if !exists('*Cscope')
-    function Cscope(path)
-        if !empty(a:path)
-            let curPath= a:path
-        else
-            let curPath = getcwd()
-        endif
-        let strList = split(curPath, "/")
-        let csName = strList[len(strList) - 1] . '_cscope.out'
-        let ret = system('find '.curPath.' -iname *.c -o -iname *.cpp -o -iname *.h -o -iname *.hpp > cscope.files')
-        let ret = system('cscope -Rbq -i cscope.files -f '.csName)
-        execute('cs add '.csName)
-    endfunction
-    command! -nargs=? -complete=dir Cscope call Cscope(<q-args>)
-endif
+function! Cscope(path)
+    if !empty(a:path)
+        let curPath= a:path
+    else
+        let curPath = getcwd()
+    endif
+    let strList = split(curPath, "/")
+    let csName = strList[len(strList) - 1] . '_cscope.out'
+    let ret = system('find '.curPath.' -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp > cscope.files')
+    let ret = system('cscope -Rbq -i cscope.files -f '.csName)
+    execute('cs add '.csName)
+endfunction
+command! -nargs=? -complete=dir Cscope call Cscope(<q-args>)
 
-if !exists('*Cpp_tags')
-	function Cpp_tags(path) "{{{
-        if !empty(a:path)
-            let curPath= a:path
-        else
-            let curPath = getcwd()
-        endif
-        let ctags = 'ctags -R '
-        let ctags .= '--append=yes '
-        let ctags .= '--sort=yes '
-        let ctags .= '--c++-kinds=+p '
-        let ctags .= '--fields=+iaS '
-        let ctags .= '--extras=+q '
-        let ctags .= '--language-force=C++ '
-        let ctags .= '--exclude=cscope.out '
-        let ctags .= curPath
-        echom ctags
-        let ret = system(ctags)
-        if !empty(ret)
-            echom ret
-        else
-            echom 'ctags build successful on '.expand(curPath)
-        endif
-		set tags+=./tags,./TAGS,tags,TAGS
-	endfunction "}}}
-    command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
-endif
+function! Cpp_tags(path) "{{{
+    if !empty(a:path)
+        let curPath= a:path
+    else
+        let curPath = getcwd()
+    endif
+    let ctags = 'ctags -R '
+    let ctags .= '--append=yes '
+    let ctags .= '--sort=yes '
+    let ctags .= '--c++-kinds=+p '
+    let ctags .= '--fields=+iaS '
+    let ctags .= '--extras=+q '
+    let ctags .= '--language-force=C++ '
+    let ctags .= '--exclude=cscope.out '
+    let ctags .= curPath
+    echom ctags
+    let ret = system(ctags)
+    if !empty(ret)
+        echom ret
+    else
+        echom 'ctags build successful on '.expand(curPath)
+    endif
+    set tags+=./tags,./TAGS,tags,TAGS
+endfunction "}}}
+command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
 
-if !exists('*C_tags')
-	function C_tags() "{{{
-		!ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
-		set tags+=./tags,./TAGS,tags,TAGS
-	endfunction "}}}
-endif
-
-if !exists('*Func_call')
-	function! Func_call() "{{{
-		let maker = input('Enter maker: ')
-		SignatureListMarkers maker, 3
-	endfunction "}}}
-
-	nmap <silent><F1> :call Func_call() <CR>
-endif
+function! C_tags() "{{{
+    !ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
+    set tags+=./tags,./TAGS,tags,TAGS
+endfunction "}}}
 
 if !exists('g:lasttab')
     let g:lasttab = 1
@@ -112,7 +97,7 @@ nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
 autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
 nmap <silent><F4> :MundoToggle <CR>
-command GREP :execute 'vimgrep /'.expand('<cword>').'/j '.expand('%') | copen
+command! GREP :execute 'vimgrep /'.expand('<cword>').'/j '.expand('%') | copen
 nmap grep :GREP <CR>
 """"""""""""""""""""""""""""""
 execute "set <M-p>=\ep"
