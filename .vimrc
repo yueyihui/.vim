@@ -86,6 +86,12 @@ if !exists('*Func_call')
 	nmap <silent><F1> :call Func_call() <CR>
 endif
 
+if !exists('g:lasttab')
+    let g:lasttab = 1
+endif
+nmap tp :execute "tabnext".g:lasttab<CR>
+autocmd TabLeave * let g:lasttab = tabpagenr()
+
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 hi QuickFixLine ctermbg=None
