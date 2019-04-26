@@ -36,6 +36,7 @@ function! Cscope(path)
     let csName = strList[len(strList) - 1] . '_cscope.out'
     let ret = system('find '.curPath.' -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp > cscope.files')
     let ret = system('cscope -Rbq -i cscope.files -f '.csName)
+    let ret = system('rm cscope.files')
     execute('cs add '.csName)
 endfunction
 command! -nargs=? -complete=dir Cscope call Cscope(<q-args>)
