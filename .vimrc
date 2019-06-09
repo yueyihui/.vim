@@ -155,8 +155,13 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map j <Plug>(easymotion-j)
+"nmap <Leader>j <Plug>(easymotion-j)
+map <C-j> <down>
+
+map k <Plug>(easymotion-k)
+"nmap <Leader>k <Plug>(easymotion-k)
+map <C-k> <up>
 
 " <Leader>f{char} to move to {char}
 vmap <Leader>f <Plug>(easymotion-bd-f)
@@ -174,6 +179,11 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+map h <Plug>(easymotion-bl)
+map <C-h> <left>
+map l <Plug>(easymotion-el)
+map <C-l> <right>
 
 " Gif config
 map  / <Plug>(easymotion-sn)
