@@ -188,7 +188,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 map h <Plug>(easymotion-bl)
 map <C-h> <left>
-map l <Plug>(easymotion-el)
+map l <Plug>(easymotion-wl)
 map <C-l> <right>
 
 " Gif config
