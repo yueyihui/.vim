@@ -28,12 +28,18 @@ endif
 
 function! Cscope(path)
     if !empty(a:path)
-        let curPath= a:path
+        let curPath = a:path
+        let l:sub_path = 1
     else
         let curPath = getcwd()
+        let l:sub_path = 0
     endif
     let strList = split(curPath, "/")
-    let csName = strList[len(strList) - 1] . '_cscope.out'
+    if l:sub_path == 1
+        let csName = strList[len(strList) - 2] . '_' . strList[len(strList) - 1] . '_cscope.out'
+    else
+        let csName = strList[len(strList) - 1] . '_cscope.out'
+    endif
     let ret = system('find '.curPath.' -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp > cscope.files')
     let ret = system('cscope -Rbq -i cscope.files -f '.csName)
     let ret = system('rm cscope.files')
