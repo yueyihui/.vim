@@ -74,15 +74,38 @@ endfunction "}}}
 command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
 
 function! C_tags() "{{{
-    !ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
+   " !ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
+   " set tags+=./tags,./TAGS,tags,TAGS
+    if !empty(a:path)
+        let curPath= a:path
+    else
+        let curPath = getcwd()
+    endif
+    let ctags = 'ctags -R '
+    let ctags .= '--append=yes '
+    let ctags .= '--C-kinds=+p '
+    let ctags .= '--fields=+aS '
+    let ctags .= '--extras=+q '
+    let ctags .= '--exclude=cscope.out '
+    let ctags .= curPath
+    echom ctags
+    let ret = system(ctags)
+    if !empty(ret)
+        echom ret
+    else
+        echom 'ctags build successful on '.expand(curPath)
+    endif
     set tags+=./tags,./TAGS,tags,TAGS
 endfunction "}}}
+command! -nargs=? -complete=dir CppTags call C_tags(<q-args>)
 
 if !exists('g:lasttab')
     let g:lasttab = 1
+    let g:lasttab_bp = 1
 endif
-nmap tp :execute "tabnext".g:lasttab<CR>
-autocmd TabLeave * let g:lasttab = tabpagenr()
+nmap <silent> tp :execute "tabnext".g:lasttab<CR>
+autocmd! TabLeave * let g:lasttab_bp = g:lasttab | let g:lasttab = tabpagenr()
+autocmd! TabClosed * let g:lasttab = g:lasttab_bp
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
@@ -161,13 +184,10 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map j <Plug>(easymotion-j)
 "nmap <Leader>j <Plug>(easymotion-j)
-map <C-j> <down>
-
-map k <Plug>(easymotion-k)
+map <C-j> <Plug>(easymotion-j)
 "nmap <Leader>k <Plug>(easymotion-k)
-map <C-k> <up>
+map <C-k> <Plug>(easymotion-k)
 
 " <Leader>f{char} to move to {char}
 vmap <Leader>f <Plug>(easymotion-bd-f)
@@ -186,10 +206,8 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
-map h <Plug>(easymotion-bl)
-map <C-h> <left>
-map l <Plug>(easymotion-wl)
-map <C-l> <right>
+map <C-h> <Plug>(easymotion-bl)
+map <C-l> <Plug>(easymotion-wl)
 
 " Gif config
 map  / <Plug>(easymotion-sn)
@@ -239,7 +257,7 @@ let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
-au InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" au InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
