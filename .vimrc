@@ -22,22 +22,14 @@ set t_Co=256
 colorscheme gruvbox
 syntax on
 
-if filereadable('cscope.out')
-	cs add cscope.out
-endif
-
 function! Cscope(path)
     if !empty(a:path)
-        let curPath = a:path
-        let l:sub_path = 1
-    else
-        let curPath = getcwd()
-        let l:sub_path = 0
-    endif
-    let strList = split(curPath, "/")
-    if l:sub_path == 1
+        let curPath = getcwd() . '/' . a:path
+        let strList = split(curPath, "/")
         let csName = strList[len(strList) - 2] . '_' . strList[len(strList) - 1] . '_cscope.out'
     else
+        let curPath = getcwd()
+        let strList = split(curPath, "/")
         let csName = strList[len(strList) - 1] . '_cscope.out'
     endif
     let ret = system('find '.curPath.' -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp > cscope.files')
@@ -97,7 +89,7 @@ function! C_tags() "{{{
     endif
     set tags+=./tags,./TAGS,tags,TAGS
 endfunction "}}}
-command! -nargs=? -complete=dir CppTags call C_tags(<q-args>)
+command! -nargs=? -complete=dir CTags call C_tags(<q-args>)
 
 if !exists('g:lasttab')
     let g:lasttab = 1
