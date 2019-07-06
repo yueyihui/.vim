@@ -65,7 +65,7 @@ function! Cpp_tags(path) "{{{
 endfunction "}}}
 command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
 
-function! C_tags() "{{{
+function! C_tags(path) "{{{
    " !ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
    " set tags+=./tags,./TAGS,tags,TAGS
     if !empty(a:path)
@@ -89,7 +89,7 @@ function! C_tags() "{{{
     endif
     set tags+=./tags,./TAGS,tags,TAGS
 endfunction "}}}
-command! -nargs=? -complete=dir CTags call C_tags(<q-args>)
+command! -nargs=? -complete=dir Ctags call C_tags(<q-args>)
 
 if !exists('g:lasttab')
     let g:lasttab = 1
@@ -138,6 +138,10 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> gp :tabprevious<CR>
+vnoremap <C-C>  "+y
+map <C-V>       "+gP
+cmap <C-V>      <C-R>+
+imap <C-V>      <C-R>+
 """""""""""""""""""""""""""""""
 
 " exchange words begin
@@ -156,14 +160,14 @@ nmap <silent><Leader>s :TagbarCurrentTag <CR>
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>| noh
 
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize = 35
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeIgnore = ['\.git$', '\.out$', 'cscope[[file]]', 'tags[[file]]', 'TAGS[[file]]', '\.o$', '\.so$']
 let g:NERDTreeMapToggleFilters = 'h'
-let g:Tlist_WinWidth=50
-let g:tagbar_width=60
+let g:Tlist_WinWidth = 50
+let g:tagbar_width = 60
 " let g:mundo_width = 45
 " let g:mundo_right = 1
 
