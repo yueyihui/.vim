@@ -184,10 +184,10 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> gp :tabprevious<CR>
-vnoremap <C-C>  "+y
-map <C-V>       "+gP
-cmap <C-V>      <C-R>+
-imap <C-V>      <C-R>+
+vnoremap <C-c>  "+y
+map <C-p>       "+gP
+cmap <C-v>      <C-R>+
+imap <C-v>      <C-R>+
 """""""""""""""""""""""""""""""
 
 " exchange words begin
