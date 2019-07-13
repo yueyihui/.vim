@@ -185,7 +185,7 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> gp :tabprevious<CR>
 vnoremap <C-c>  "+y
-map <C-p>       "+gP
+map <C-a>       "+gP
 cmap <C-v>      <C-R>+
 imap <C-v>      <C-R>+
 """""""""""""""""""""""""""""""
