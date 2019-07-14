@@ -185,7 +185,7 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> gp :tabprevious<CR>
 vnoremap <C-c>  "+y
-map <C-a>       "+gP
+map <C-v>       "+gP
 cmap <C-v>      <C-R>+
 imap <C-v>      <C-R>+
 """""""""""""""""""""""""""""""
@@ -388,3 +388,4 @@ Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ronakg/quickr-preview.vim'
+Plugin 'scrooloose/nerdcommenter'
