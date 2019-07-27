@@ -139,11 +139,10 @@ command! -nargs=? -complete=dir Ctags call C_tags(<q-args>)
 
 if !exists('g:lasttab')
     let g:lasttab = 1
-    let g:lasttab_bp = 1
 endif
-nmap <silent> tp :execute "tabnext".g:lasttab<CR>
-autocmd! TabLeave * let g:lasttab_bp = g:lasttab | let g:lasttab = tabpagenr()
-autocmd! TabClosed * let g:lasttab = g:lasttab_bp
+au TabLeave * let g:lasttab = tabpagenr()
+command! LastTab :execute "tabnext".g:lasttab
+nmap <silent>gT :LastTab <CR>
 
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
