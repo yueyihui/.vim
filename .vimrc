@@ -319,6 +319,9 @@ let g:AutoPairsShortcutToggle = ''
 let g:quickr_preview_on_cursor = 1
 """""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:NERDCreateDefaultMappings = 0
+map <C-?> <plug>NERDCommenterToggle
+
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
