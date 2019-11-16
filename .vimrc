@@ -78,8 +78,8 @@ function! Cscope(path)
         let strList = split(curPath, "/")
         let csName = strList[len(strList) - 1] . '_cscope.out'
     endif
-    let ret = system('find '.curPath.' -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp > cscope.files')
-    let ret = system('cscope -Rbq -i cscope.files -f '.csName)
+    let ret = system("find -regex " . shellescape('.*/.*\.\(c\|cpp\|h\)$') . " > cscope.files")
+    let ret = system('cscope -b -q -i cscope.files -f '.csName)
     let ret = system('rm cscope.files')
     execute('cs add '.csName)
 endfunction
@@ -391,3 +391,4 @@ Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'yueyihui/autoloadcscope'
