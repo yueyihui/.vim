@@ -93,11 +93,9 @@ function! Cpp_tags(path) "{{{
     endif
     let ctags = 'ctags -R '
     let ctags .= '--append=yes '
-    let ctags .= '--sort=yes '
     let ctags .= '--c++-kinds=+p '
     let ctags .= '--fields=+iaS '
     let ctags .= '--extras=+q '
-    let ctags .= '--language-force=C++ '
     let ctags .= '--exclude=cscope.out '
     let ctags .= curPath
     echom ctags
@@ -121,7 +119,7 @@ function! C_tags(path) "{{{
     endif
     let ctags = 'ctags -R '
     let ctags .= '--append=yes '
-    let ctags .= '--C-kinds=+p '
+    let ctags .= '--c-kinds=+px '
     let ctags .= '--fields=+aS '
     let ctags .= '--extras=+q '
     let ctags .= '--exclude=cscope.out '
