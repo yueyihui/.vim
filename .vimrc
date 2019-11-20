@@ -75,10 +75,9 @@ function! Cscope(path)
         let csName = strList[len(strList) - 2] . '_' . strList[len(strList) - 1] . '_cscope.out'
     else
         let curPath = getcwd()
-        let strList = split(curPath, "/")
-        let csName = strList[len(strList) - 1] . '_cscope.out'
+        let csName = 'cscope.out'
     endif
-    let ret = system("find -regex " . shellescape('.*/.*\.\(c\|cpp\|h\)$') . " > cscope.files")
+    let ret = system("find ".curPath." -regex ".shellescape('.*/.*\.\(c\|cpp\|h\)$')." > cscope.files")
     let ret = system('cscope -b -q -i cscope.files -f '.csName)
     let ret = system('rm cscope.files')
     execute('cs add '.csName)
