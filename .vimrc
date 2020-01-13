@@ -221,6 +221,8 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+
 " JK motions: Line motions
 "nmap <Leader>j <Plug>(easymotion-j)
 map <C-j> <Plug>(easymotion-j)
@@ -234,15 +236,16 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2) Need one more keystroke, 
 " but on average, it may be more comfortable.
-nmap f <Plug>(easymotion-overwin-f2)
+nmap F <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-bd-w)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
 nmap <Leader>l <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+"map  <Leader>w <Plug>(easymotion-bd-w)
+"nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 map <C-h> <Plug>(easymotion-bl)
 map <C-l> <Plug>(easymotion-wl)
