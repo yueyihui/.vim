@@ -4,6 +4,7 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
+set nocp
 set ttimeoutlen=0
 
 set guioptions-=m  "menu bar
@@ -93,7 +94,7 @@ function! Cpp_tags(path) "{{{
     let ctags = 'ctags -R '
     let ctags .= '--append=yes '
     let ctags .= '--c++-kinds=+p '
-    let ctags .= '--fields=+iaS '
+    let ctags .= '--fields=+iaSn '
     let ctags .= '--extras=+q '
     let ctags .= '--exclude=cscope.out '
     let ctags .= curPath
@@ -119,7 +120,7 @@ function! C_tags(path) "{{{
     let ctags = 'ctags -R '
     let ctags .= '--append=yes '
     let ctags .= '--c-kinds=+px '
-    let ctags .= '--fields=+aS '
+    let ctags .= '--fields=+aSn '
     let ctags .= '--extras=+q '
     let ctags .= '--exclude=cscope.out '
     let ctags .= curPath
@@ -172,6 +173,11 @@ noremap <silent> <M-u> :PreviewScroll -1 <CR>
 
 execute "set <M-d>=\ed"
 noremap <silent> <M-d> :PreviewScroll +1 <CR>
+
+augroup MyQuickfixPreview
+    au!
+    au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+augroup END
 
 "nmap <silent> <A-Up> :wincmd k<CR>
 "nmap <silent> <A-Down> :wincmd j<CR>
@@ -300,6 +306,7 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 " au InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+set completeopt+=popup
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
@@ -316,7 +323,7 @@ let g:AutoPairsShortcutToggle = ''
 """"""""""""""""""""""END""""""""""""""""""""""""""
 
 """"""""""""""""""quickr-preview"""""""""""""""""
-let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_on_cursor = 0
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:NERDCreateDefaultMappings = 0
@@ -354,9 +361,9 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -393,3 +400,4 @@ Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
 Plugin 'jeetsukumaran/vim-buffersaurus'
+Plugin 'skywind3000/vim-quickui'
