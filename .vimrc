@@ -295,18 +295,17 @@ nmap <Leader>7  <Plug>MarkSearchGroup7Next
 
 """""""""""""""""""""""Omni""""""""""""""""""""""""""""""""
 " OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+"let OmniCpp_NamespaceSearch = 1
+"let OmniCpp_GlobalScopeSearch = 1
+"let OmniCpp_ShowAccess = 1
+"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+"let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 " au InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-set completeopt+=popup
+set completeopt=menuone,menu,longest
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
@@ -376,13 +375,10 @@ filetype plugin on
 """"""""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
 
 " Optional:
-Plugin 'vim-scripts/OmniCppComplete'
-Plugin 'othree/vim-autocomplpop'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vim-scripts/L9'
-Plugin 'honza/vim-snippets'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
@@ -399,5 +395,4 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
-Plugin 'jeetsukumaran/vim-buffersaurus'
 Plugin 'skywind3000/vim-quickui'
