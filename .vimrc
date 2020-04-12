@@ -328,6 +328,8 @@ let g:quickr_preview_on_cursor = 0
 let g:NERDCreateDefaultMappings = 0
 map <C-?> <plug>NERDCommenterToggle
 
+let g:ycm_key_list_select_completion = ['<Down>']
+
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -375,10 +377,12 @@ filetype plugin on
 """"""""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " Optional:
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vim-scripts/L9'
+Plugin 'honza/vim-snippets'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
