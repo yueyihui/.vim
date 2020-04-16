@@ -227,6 +227,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 
+" key scope
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 
 " JK motions: Line motions
@@ -399,5 +400,4 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
-Plugin 'jeetsukumaran/vim-buffersaurus'
 Plugin 'skywind3000/vim-quickui'
