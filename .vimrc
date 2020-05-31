@@ -5,6 +5,7 @@ set shiftwidth=4
 set autoindent
 set cindent
 set nocp
+set noswapfile
 set ttimeoutlen=0
 
 set guioptions-=m  "menu bar
