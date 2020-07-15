@@ -143,6 +143,18 @@ au TabLeave * let g:lasttab = tabpagenr()
 command! LastTab :execute "tabnext".g:lasttab
 nmap <silent>gT :LastTab <CR>
 
+function! TabNx()
+    if tabpagenr() == tabpagenr('$')
+        return 'tabn' . (empty(v:count) ? v:count + 1 : v:count)
+    elseif tabpagenr() + v:count > tabpagenr('$')
+        return 'tabn' . (v:count - (tabpagenr('$') - tabpagenr()))
+    else
+        return 'tabn+' . (empty(v:count) ? v:count + 1 : v:count)
+    endif
+endfunction
+noremap <expr> gt ':<C-U>' . TabNx() . '<CR>'
+noremap <expr> gp ':<C-U>' . (v:count > 1 ? v:count : '') . 'tabprevious<CR>'
+
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 hi QuickFixLine ctermbg=None
@@ -186,7 +198,7 @@ augroup END
 "nmap <silent> <A-Right> :wincmd l<CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> gp :tabprevious<CR>
+"nnoremap <silent> gp :tabprevious<CR>
 vnoremap <C-c>  "+y
 map <C-v>       "+gP
 cmap <C-v>      <C-R>+
