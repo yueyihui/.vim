@@ -97,7 +97,7 @@ function! Cpp_tags(path) "{{{
     let ctags .= '--c++-kinds=+p '
     let ctags .= '--fields=+iaSn '
     let ctags .= '--extras=+q '
-    let ctags .= '--exclude=cscope.out '
+    let ctags .= '--exclude=cscope.out CMakeLists.txt '
     let ctags .= curPath
     echom ctags
     let ret = system(ctags)
@@ -143,6 +143,18 @@ au TabLeave * let g:lasttab = tabpagenr()
 command! LastTab :execute "tabnext".g:lasttab
 nmap <silent>gT :LastTab <CR>
 
+function! TabNx()
+    if tabpagenr() == tabpagenr('$')
+        return 'tabn' . (empty(v:count) ? v:count + 1 : v:count)
+    elseif tabpagenr() + v:count > tabpagenr('$')
+        return 'tabn' . (v:count - (tabpagenr('$') - tabpagenr()))
+    else
+        return 'tabn+' . (empty(v:count) ? v:count + 1 : v:count)
+    endif
+endfunction
+noremap <expr> gt ':<C-U>' . TabNx() . '<CR>'
+noremap <expr> gp ':<C-U>' . (v:count > 1 ? v:count : '') . 'tabprevious<CR>'
+
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 hi QuickFixLine ctermbg=None
@@ -186,7 +198,7 @@ augroup END
 "nmap <silent> <A-Right> :wincmd l<CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> gp :tabprevious<CR>
+"nnoremap <silent> gp :tabprevious<CR>
 vnoremap <C-c>  "+y
 map <C-v>       "+gP
 cmap <C-v>      <C-R>+
@@ -330,6 +342,7 @@ let g:NERDCreateDefaultMappings = 0
 map <C-?> <plug>NERDCommenterToggle
 
 let g:ycm_key_list_select_completion = ['<Down>']
+nmap <F1> <plug>(YCMHover)
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -401,3 +414,12 @@ Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
 Plugin 'skywind3000/vim-quickui'
+
+function! s:CustomizeYcmQuickFixWindow()
+  " Move the window to the top of the screen.
+  wincmd K
+  " Set the window height to 5.
+  5wincmd _
+endfunction
+
+autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
