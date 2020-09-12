@@ -24,6 +24,11 @@ set t_Co=256
 colorscheme gruvbox
 syntax on
 
+""""""""">4;2m"""""""""
+let &t_TI = ""
+let &t_TE = ""
+"""""""""""""""""""""""
+
 function MoveToPrevTab()
     "there is only one window
     if tabpagenr('$') == 1 && winnr('$') == 1
@@ -187,11 +192,6 @@ noremap <silent> <M-u> :PreviewScroll -1 <CR>
 execute "set <M-d>=\ed"
 noremap <silent> <M-d> :PreviewScroll +1 <CR>
 
-augroup MyQuickfixPreview
-    au!
-    au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
-augroup END
-
 "nmap <silent> <A-Up> :wincmd k<CR>
 "nmap <silent> <A-Down> :wincmd j<CR>
 "nmap <silent> <A-Left> :wincmd h<CR>
@@ -204,22 +204,11 @@ map <C-v>       "+gP
 cmap <C-v>      <C-R>+
 imap <C-v>      <C-R>+
 """""""""""""""""""""""""""""""
-
-" exchange words begin
-nmap <Leader>es diwmb
-
-" exchange words end
-nmap <Leader>ee viwp`bP
-
-" nmap <Leader>st :TlistShowTag <CR>
 nmap <silent><Leader>s :TagbarCurrentTag <CR>
 
-" "hy is yank words to h
-" <C-r>h is past h
-" c is confirm,
-" <left> move cursor to one left.
-" vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>| noh
+nnoremap <silent> <plug>(quickr_preview_qf_close) :cclose<CR>:lclose<CR>
+nmap <leader>q <plug>(quickr_preview_qf_close)
+"""""""""""""""""""""""""""""""
 
 let g:NERDTreeWinSize = 35
 let g:NERDTreeQuitOnOpen = 1
@@ -334,14 +323,18 @@ let g:AutoPairsShortcutFastWrap = '<M-q>'
 let g:AutoPairsShortcutToggle = ''
 """"""""""""""""""""""END""""""""""""""""""""""""""
 
-""""""""""""""""""quickr-preview"""""""""""""""""
-let g:quickr_preview_on_cursor = 0
+""""""""""""""""""qf-preview"""""""""""""""""
+augroup qfpreview
+    autocmd!
+    autocmd FileType qf nmap <buffer> p <plug>(qf-preview-open)
+augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:NERDCreateDefaultMappings = 0
 map <C-?> <plug>NERDCommenterToggle
 
 let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_auto_hover=""
 nmap <F1> <plug>(YCMHover)
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
@@ -395,7 +388,6 @@ Plugin 'garbas/vim-snipmate'
 
 " Optional:
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vim-scripts/L9'
 Plugin 'honza/vim-snippets'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'inkarkat/vim-ingo-library'
@@ -410,10 +402,23 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'ronakg/quickr-preview.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
-Plugin 'skywind3000/vim-quickui'
+Plugin 'bfrg/vim-qf-preview'
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+Plugin 'google/vim-glaive'
+
+""""""""""""""""codefmt""""""""""""""""
+call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+"Glaive codefmt plugin[mappings]
+Glaive codefmt plugin[mappings]='='
+
+augroup autoformat_settings
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+augroup END
+"""""""""""""""""""""""""""""""""""""""
 
 function! s:CustomizeYcmQuickFixWindow()
   " Move the window to the top of the screen.
