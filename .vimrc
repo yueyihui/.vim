@@ -414,10 +414,11 @@ call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
 "Glaive codefmt plugin[mappings]
 Glaive codefmt plugin[mappings]='='
+Glaive codefmt shfmt_options=`['-sr', '-ci']`
 
-augroup autoformat_settings
-  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-augroup END
+"augroup autoformat_settings
+  "autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+"augroup END
 """""""""""""""""""""""""""""""""""""""
 
 function! s:CustomizeYcmQuickFixWindow()
