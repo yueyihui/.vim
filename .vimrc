@@ -21,6 +21,7 @@ set background=dark
 set nohlsearch
 set backspace=indent,eol,start
 set t_Co=256
+set mouse=a
 colorscheme gruvbox
 syntax on
 
@@ -102,7 +103,10 @@ function! Cpp_tags(path) "{{{
     let ctags .= '--c++-kinds=+p '
     let ctags .= '--fields=+iaSn '
     let ctags .= '--extras=+q '
-    let ctags .= '--exclude=cscope.out CMakeLists.txt '
+    let ctags .= '--exclude=cscope.* '
+    let ctags .= '--exclude=tags '
+    let ctags .= '--exclude=*.txt '
+    let ctags .= '--exclude=*.out '
     let ctags .= curPath
     echom ctags
     let ret = system(ctags)
@@ -172,6 +176,13 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+
 nmap <silent><F2> :TagbarOpenAutoClose <CR>
 autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
 autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
@@ -385,6 +396,7 @@ filetype plugin on
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+let g:snipMate = { 'snippet_version' : 1 }
 
 " Optional:
 Plugin 'ycm-core/YouCompleteMe'
