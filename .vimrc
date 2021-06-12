@@ -30,6 +30,23 @@ let &t_TI = ""
 let &t_TE = ""
 """""""""""""""""""""""
 
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+let g:tmux_navigator_no_mappings = 1
+if !empty($TMUX)
+   nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
+   nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+   nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+   nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
+   "nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+endif
+
 function MoveToPrevTab()
     "there is only one window
     if tabpagenr('$') == 1 && winnr('$') == 1
@@ -342,7 +359,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:NERDCreateDefaultMappings = 0
-map <C-?> <plug>NERDCommenterToggle
+map <C-?> <Plug>NERDCommenterSexy
 
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_auto_hover=""
@@ -414,12 +431,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'preservim/nerdcommenter'
 Plugin 'yueyihui/autoloadcscope'
 Plugin 'bfrg/vim-qf-preview'
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
+Plugin 'christoomey/vim-tmux-navigator'
 
 """"""""""""""""codefmt""""""""""""""""
 call glaive#Install()
