@@ -41,10 +41,15 @@ endif
 let g:tmux_navigator_no_mappings = 1
 if !empty($TMUX)
    nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
+   nnoremap <silent> <C-w><C-h> :TmuxNavigateLeft<cr>
    nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+   nnoremap <silent> <C-w><C-j> :TmuxNavigateDown<cr>
    nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+   nnoremap <silent> <C-w><C-k> :TmuxNavigateUp<cr>
    nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
-   "nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+   nnoremap <silent> <C-w><C-l> :TmuxNavigateRight<cr>
+   nnoremap <silent> <C-w>w :TmuxNavigatePrevious<cr>
+   nnoremap <silent> <C-w><C-w> :TmuxNavigatePrevious<cr>
 endif
 
 function MoveToPrevTab()
@@ -359,7 +364,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:NERDCreateDefaultMappings = 0
-map <C-?> <Plug>NERDCommenterSexy
+nmap <BS> <Plug>NERDCommenterSexy
+vmap <BS> <Plug>NERDCommenterSexy
 
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_auto_hover=""
