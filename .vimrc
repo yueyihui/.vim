@@ -1,3 +1,4 @@
+set encoding=utf-8
 set tabstop=4
 set expandtab
 set softtabstop=4
@@ -21,7 +22,7 @@ set background=dark
 set nohlsearch
 set backspace=indent,eol,start
 set t_Co=256
-set mouse=a
+"set mouse=a
 colorscheme gruvbox
 syntax on
 
@@ -271,18 +272,18 @@ map <C-j> <Plug>(easymotion-j)
 map <C-k> <Plug>(easymotion-k)
 
 " <Leader>f{char} to move to {char}
-vmap <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+"vmap <Leader>f <Plug>(easymotion-bd-f)
+"nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2) Need one more keystroke, 
 " but on average, it may be more comfortable.
-nmap F <Plug>(easymotion-overwin-f2)
+"nmap F <Plug>(easymotion-overwin-f2)
 nmap f <Plug>(easymotion-bd-w)
 
 " Move to line
-map <Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader>l <Plug>(easymotion-overwin-line)
+"map <Leader>l <Plug>(easymotion-bd-jk)
+"nmap <Leader>l <Plug>(easymotion-overwin-line)
 
 " Move to word
 "map  <Leader>w <Plug>(easymotion-bd-w)
@@ -431,6 +432,9 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'hari-rangarajan/CCTree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'skywind3000/vim-preview'
 Plugin 'vim-airline/vim-airline'
@@ -465,3 +469,15 @@ function! s:CustomizeYcmQuickFixWindow()
 endfunction
 
 autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
+
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> F incsearch#go(<SID>config_easyfuzzymotion())
