@@ -121,16 +121,12 @@ function! Cpp_tags(path) "{{{
     else
         let curPath = getcwd()
     endif
-    let ctags = 'ctags -R '
+    let ctags = 'find ' .curPath. ' \( -name \*.h -o -name \*.cpp -o -name \*.c -o -name \*.C \) -not -type l -print | xargs '
+    let ctags .= 'ctags '
     let ctags .= '--append=yes '
     let ctags .= '--c++-kinds=+p '
     let ctags .= '--fields=+iaSn '
     let ctags .= '--extras=+q '
-    let ctags .= '--exclude=cscope.* '
-    let ctags .= '--exclude=tags '
-    let ctags .= '--exclude=*.txt '
-    let ctags .= '--exclude=*.out '
-    let ctags .= curPath
     echom ctags
     let ret = system(ctags)
     if !empty(ret)
