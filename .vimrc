@@ -369,41 +369,33 @@ let g:ycm_auto_hover=""
 nmap <F1> <plug>(YCMHover)
 
 """"""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+"Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -414,37 +406,38 @@ filetype plugin on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 """"""""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Optional:
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'honza/vim-snippets'
-Plugin 'simnalamburt/vim-mundo'
-Plugin 'inkarkat/vim-ingo-library'
-Plugin 'inkarkat/vim-mark'
-Plugin 'kshenoy/vim-signature'
-Plugin 'hari-rangarajan/CCTree'
-Plugin 'scrooloose/nerdtree'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'haya14busa/incsearch-fuzzy.vim'
-Plugin 'haya14busa/incsearch-easymotion.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'skywind3000/vim-preview'
-Plugin 'vim-airline/vim-airline'
-Plugin 'morhetz/gruvbox'
-Plugin 'vim-scripts/Auto-Pairs'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'preservim/nerdcommenter'
-Plugin 'yueyihui/autoloadcscope'
-Plugin 'bfrg/vim-qf-preview'
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmt'
-Plugin 'google/vim-glaive'
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'honza/vim-snippets'
+Plug 'simnalamburt/vim-mundo'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
+Plug 'kshenoy/vim-signature'
+Plug 'hari-rangarajan/CCTree'
+Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'majutsushi/tagbar'
+Plug 'skywind3000/vim-preview'
+Plug 'vim-airline/vim-airline'
+Plug 'morhetz/gruvbox'
+Plug 'vim-scripts/Auto-Pairs'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'preservim/nerdcommenter'
+Plug 'yueyihui/autoloadcscope'
+Plug 'bfrg/vim-qf-preview'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
 
 """"""""""""""""codefmt""""""""""""""""
 call glaive#Install()
