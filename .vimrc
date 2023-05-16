@@ -15,14 +15,11 @@ set guioptions-=r  "scrollbar right
 set guioptions-=L  "scrollbar left
 set guioptions-=b  "scrollbar bottom
 
-set laststatus=2   "show statusline
-set statusline=%f  "F full path
 set number
 set background=dark
 set nohlsearch
 set backspace=indent,eol,start
 set t_Co=256
-"set mouse=a
 colorscheme gruvbox
 syntax on
 
@@ -108,7 +105,7 @@ function! Cscope(path)
         let curPath = getcwd()
         let csName = 'cscope.out'
     endif
-    let ret = system("find ".curPath." -regex ".shellescape('.*/.*\.\(c\|cpp\|h\)$')." > cscope.files")
+    let ret = system("find ".curPath." -regex ".shellescape('.*/.*\.\(c\|cpp\|cc\|hpp\|h\)$')." > cscope.files")
     let ret = system('cscope -b -q -i cscope.files -f '.csName)
     let ret = system('rm cscope.files')
     execute('cs add '.csName)
@@ -121,7 +118,7 @@ function! Cpp_tags(path) "{{{
     else
         let curPath = getcwd()
     endif
-    let ctags = 'find ' .curPath. ' \( -name \*.h -o -name \*.cpp -o -name \*.c -o -name \*.C \) -not -type l -print | xargs '
+    let ctags = 'find ' .curPath. ' \( -name \*.h -o -name \*.cpp -o -name \*.c -o -name \*.cc -o -name \*.hpp \) -not -type l -print | xargs '
     let ctags .= 'ctags '
     let ctags .= '--append=yes '
     let ctags .= '--c++-kinds=+p '
@@ -195,6 +192,11 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let airline#extensions#tabline#tabs_label = ''
+let airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
