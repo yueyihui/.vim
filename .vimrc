@@ -204,9 +204,9 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.branch = ''
 
-nmap <silent><F2> :TagbarOpenAutoClose <CR>
-autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
-autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
+nmap <silent><F2> :Tagbar fjc <CR>
+" autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
+" autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
 " nmap <silent><F2> :TlistToggle <CR>
 nmap <silent><F3> :NERDTreeFind  <CR>
 autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
@@ -339,7 +339,7 @@ nmap <Leader>7  <Plug>MarkSearchGroup7Next
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 " au InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest
+"set completeopt=menuone,menu,longest
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
