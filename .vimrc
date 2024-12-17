@@ -339,7 +339,7 @@ nmap <Leader>7  <Plug>MarkSearchGroup7Next
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 " au InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"set completeopt=menuone,menu,longest
+set completeopt=menuone,menu,longest
 """""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""CCTree""""""""""""""""""""""""""""""
@@ -366,7 +366,6 @@ let g:NERDCreateDefaultMappings = 0
 nmap <BS> <Plug>NERDCommenterSexy
 vmap <BS> <Plug>NERDCommenterSexy
 
-let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_auto_hover=""
 nmap <F1> <plug>(YCMHover)
 
@@ -452,15 +451,6 @@ Glaive codefmt shfmt_options=`['-sr', '-ci']`
   "autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
 "augroup END
 """""""""""""""""""""""""""""""""""""""
-
-function! s:CustomizeYcmQuickFixWindow()
-  " Move the window to the top of the screen.
-  wincmd K
-  " Set the window height to 5.
-  5wincmd _
-endfunction
-
-autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
 
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
