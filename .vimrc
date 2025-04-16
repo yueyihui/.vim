@@ -135,31 +135,50 @@ function! Cpp_tags(path) "{{{
 endfunction "}}}
 command! -nargs=? -complete=dir CppTags call Cpp_tags(<q-args>)
 
-function! C_tags(path) "{{{
-   " !ctags -R --append=yes --C-kinds=+p --fields=+aS --extras=+q --exclude=cscope.out
-   " set tags+=./tags,./TAGS,tags,TAGS
-    if !empty(a:path)
-        let curPath= a:path
-    else
-        let curPath = getcwd()
+" Function to generate tags for all .sh files in a path (non-recursive) using find and ctags
+function! Shell_tags(...) abort
+    " Use current directory if no path is provided
+    let path = a:0 > 0 ? a:1 : getcwd()
+
+    " Resolve the full path
+    let full_path = fnamemodify(path, ':p')
+
+    " Check if the path exists
+    if !isdirectory(full_path) && !filereadable(full_path)
+        echohl ErrorMsg
+        echom "Error: Path '" . full_path . "' does not exist or is invalid"
+        echohl None
+        return
     endif
-    let ctags = 'ctags -R '
-    let ctags .= '--append=yes '
-    let ctags .= '--c-kinds=+px '
-    let ctags .= '--fields=+aSn '
-    let ctags .= '--extras=+q '
-    let ctags .= '--exclude=cscope.out '
-    let ctags .= curPath
-    echom ctags
-    let ret = system(ctags)
-    if !empty(ret)
-        echom ret
+
+    " If it's a file, tag just that file; if it's a directory, use find to get all .sh files
+    if filereadable(full_path)
+        let ctags_cmd = 'ctags -f tags --languages=sh ' . shellescape(full_path)
     else
-        echom 'ctags build successful on '.expand(curPath)
+        " Use find to list all .sh files in the directory (non-recursive)
+        let ctags_cmd = 'find ' . shellescape(full_path) . ' -type f -name "*.sh" -exec ctags -f tags --languages=sh {} +'
     endif
-    set tags+=./tags,./TAGS,tags,TAGS
-endfunction "}}}
-command! -nargs=? -complete=dir Ctags call C_tags(<q-args>)
+
+    " Execute the ctags command silently
+    silent execute '!'.ctags_cmd
+
+    " Check if tags file was created successfully
+    if filereadable('tags')
+        " Tell Vim to use the new tags file
+        execute 'set tags=./tags,tags;' . full_path
+        echom "Tags generated successfully for shell scripts in: " . full_path
+    else
+        echohl ErrorMsg
+        echom "Error: Failed to generate tags file (are there any .sh files?)"
+        echohl None
+    endif
+
+    " Redraw the screen to avoid 'Press ENTER' prompt
+    redraw!
+endfunction
+
+" Command with file completion for the optional path argument
+command! -nargs=? -complete=file ShellTags call Shell_tags(<f-args>)
 
 if !exists('g:lasttab')
     let g:lasttab = 1
