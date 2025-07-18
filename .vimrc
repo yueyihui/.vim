@@ -36,20 +36,6 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
 endif
 
-let g:tmux_navigator_no_mappings = 1
-if !empty($TMUX)
-   nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
-   nnoremap <silent> <C-w><C-h> :TmuxNavigateLeft<cr>
-   nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
-   nnoremap <silent> <C-w><C-j> :TmuxNavigateDown<cr>
-   nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
-   nnoremap <silent> <C-w><C-k> :TmuxNavigateUp<cr>
-   nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
-   nnoremap <silent> <C-w><C-l> :TmuxNavigateRight<cr>
-   nnoremap <silent> <C-w>w :TmuxNavigatePrevious<cr>
-   nnoremap <silent> <C-w><C-w> :TmuxNavigatePrevious<cr>
-endif
-
 function MoveToPrevTab()
     "there is only one window
     if tabpagenr('$') == 1 && winnr('$') == 1
@@ -250,10 +236,10 @@ noremap <silent> <M-d> :PreviewScroll +1 <CR>
 "nnoremap <C-Left> :tabprevious<CR>
 "nnoremap <C-Right> :tabnext<CR>
 "nnoremap <silent> gp :tabprevious<CR>
-vnoremap <C-c>  "+y
-map <C-v>       "+gP
-cmap <C-v>      <C-R>+
-imap <C-v>      <C-R>+
+"vnoremap <C-c>  "+y
+"map <C-v>       "+gP
+"cmap <C-v>      <C-R>+
+"imap <C-v>      <C-R>+
 """""""""""""""""""""""""""""""
 nmap <silent><Leader>s :TagbarCurrentTag <CR>
 
@@ -388,57 +374,20 @@ vmap <BS> <Plug>NERDCommenterSexy
 let g:ycm_auto_hover=""
 nmap <F1> <plug>(YCMHover)
 
-""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""""
 call plug#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
-" To ignore plugin indent changes, instead use:
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-""""""""""""""""""""""""""""end"""""""""""""""""""""""""""""""""
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-let g:snipMate = { 'snippet_version' : 1 }
-
-" Optional:
-Plug 'ycm-core/YouCompleteMe'
 Plug 'honza/vim-snippets'
+
+Plug 'ycm-core/YouCompleteMe'
 Plug 'simnalamburt/vim-mundo'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'kshenoy/vim-signature'
-Plug 'hari-rangarajan/CCTree'
 Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -456,7 +405,6 @@ Plug 'bfrg/vim-qf-preview'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 """"""""""""""""codefmt""""""""""""""""
