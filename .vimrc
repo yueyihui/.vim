@@ -188,10 +188,6 @@ noremap <expr> gp ':<C-U>' . (v:count > 1 ? v:count : '') . 'tabprevious<CR>'
 " hi Search cterm=NONE ctermfg=black ctermbg=grey
 " highlight LineNr ctermfg=grey
 hi QuickFixLine ctermbg=None
-let Tlist_Use_Right_Window=1
-let Tlist_Auto_Update=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Show_One_File=1
 let g:airline_powerline_fonts=1 "need https://github.com/powerline/fonts
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -209,14 +205,29 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.branch = ''
 
-nmap <silent><F2> :Tagbar fjc <CR>
-" autocmd BufEnter __Tagbar__* nmap <silent><F2> :TagbarToggle <CR>
-" autocmd BufHidden __Tagbar__* nmap <silent><F2> :TagbarOpenAutoClose <CR>
-" nmap <silent><F2> :TlistToggle <CR>
-nmap <silent><F3> :NERDTreeFind  <CR>
-autocmd BufEnter NERD_tree_* nmap <silent><F3> :NERDTreeToggle <CR>
-autocmd BufHidden NERD_tree_* nmap <silent><F3> :NERDTreeFind  <CR>
-nmap <silent><F4> :MundoToggle <CR>
+let g:tagbar_width = 60
+nmap <silent> <F2> :Tagbar fjc<CR>
+
+function! ToggleNetrwLexploreCurrentFileDir()
+    let l:netrw_window_open = 0
+    " Iterate through all open windows to check if a netrw window exists
+    for l:win_idx in range(1, winnr('$'))
+        if getwinvar(l:win_idx, '&filetype') == 'netrw'
+            " Close the specific window
+            execute l:win_idx . 'wincmd c'
+            let l:netrw_window_open = 1
+            break
+        endif
+    endfor
+
+    " If no netrw window was found, open one to the current file's directory
+    if !l:netrw_window_open
+        execute 'Lexplore %:p:h'
+    endif
+endfunction
+nnoremap <silent> <F3> :call ToggleNetrwLexploreCurrentFileDir()<CR>
+
+nnoremap <silent> <F4> :UndotreeToggle<CR>
 command! GREP :execute 'vimgrep /'.expand('<cword>').'/j '.expand('%') | copen
 nmap grep :GREP <CR>
 """"""""""""""""""""""""""""""
@@ -246,17 +257,6 @@ nmap <silent><Leader>s :TagbarCurrentTag <CR>
 nnoremap <silent> <plug>(quickr_preview_qf_close) :cclose<CR>:lclose<CR>
 nmap <leader>q <plug>(quickr_preview_qf_close)
 """""""""""""""""""""""""""""""
-
-let g:NERDTreeWinSize = 35
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeIgnore = ['\.git$', '\.out$', 'cscope[[file]]', 'tags[[file]]', 'TAGS[[file]]', '\.o$', '\.so$']
-let g:NERDTreeMapToggleFilters = 'h'
-let g:Tlist_WinWidth = 50
-let g:tagbar_width = 60
-" let g:mundo_width = 45
-" let g:mundo_right = 1
 
 """""""""""""""""""""""easy motion""""""""""""""""""""""""""""""
 "overwin: over window"
@@ -384,11 +384,10 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
 Plug 'ycm-core/YouCompleteMe'
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'kshenoy/vim-signature'
-Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
