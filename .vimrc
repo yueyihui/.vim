@@ -222,7 +222,7 @@ function! ToggleNetrwLexploreCurrentFileDir()
 
     " If no netrw window was found, open one to the current file's directory
     if !l:netrw_window_open
-        execute 'Lexplore %:p:h'
+        execute 'Vexplore %:p:h'
     endif
 endfunction
 nnoremap <silent> <F3> :call ToggleNetrwLexploreCurrentFileDir()<CR>
