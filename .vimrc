@@ -82,22 +82,6 @@ function MoveToNextTab()
 endfunc
 command! -nargs=? MoveToNextTab call MoveToNextTab()
 
-function! Cscope(path)
-    if !empty(a:path)
-        let curPath = getcwd() . '/' . a:path
-        let strList = split(curPath, "/")
-        let csName = strList[len(strList) - 2] . '_' . strList[len(strList) - 1] . '_cscope.out'
-    else
-        let curPath = getcwd()
-        let csName = 'cscope.out'
-    endif
-    let ret = system("find ".curPath." -regex ".shellescape('.*/.*\.\(c\|cpp\|cc\|hpp\|h\)$')." > cscope.files")
-    let ret = system('cscope -b -q -i cscope.files -f '.csName)
-    let ret = system('rm cscope.files')
-    execute('cs add '.csName)
-endfunction
-command! -nargs=? -complete=dir Cscope call Cscope(<q-args>)
-
 function! Cpp_tags(path) "{{{
     if !empty(a:path)
         let curPath= a:path
