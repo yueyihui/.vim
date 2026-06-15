@@ -1,10 +1,6 @@
 set encoding=utf-8
-set tabstop=4
-set expandtab
-set softtabstop=4
-set shiftwidth=4
 set autoindent
-set cindent
+filetype plugin indent on
 set nocp
 set noswapfile
 set ttimeoutlen=0
@@ -359,6 +355,9 @@ let g:ycm_auto_hover=""
 nmap <F1> <plug>(YCMHover)
 
 call plug#begin()
+" Automatically adjusts shiftwidth, tabstop, and expandtab per project/file.
+Plug 'tpope/vim-sleuth'
+
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
